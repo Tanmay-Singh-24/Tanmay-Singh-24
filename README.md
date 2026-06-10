@@ -2,7 +2,7 @@
 
 B.Tech CSE (AIML) · 4th Year · VIT Bhopal
 
-I build projects at the intersection of AI, computer vision, and systems programming — from real-time exam proctoring with YOLOv8 to order management systems in C++ with MySQL.
+I build projects at the intersection of AI and systems programming — from a production RAG-powered document assistant with LangChain and ChromaDB to concurrent systems and relational databases in C++.
 
 ---
 
@@ -11,23 +11,35 @@ I build projects at the intersection of AI, computer vision, and systems program
 ![Python](https://img.shields.io/badge/Python-3776AB?style=flat&logo=python&logoColor=white)
 ![SQL](https://img.shields.io/badge/SQL-4479A1?style=flat&logo=mysql&logoColor=white)
 
-### AI / ML / CV
-![TensorFlow](https://img.shields.io/badge/TensorFlow-FF6F00?style=flat&logo=tensorflow&logoColor=white)
-![OpenCV](https://img.shields.io/badge/OpenCV-5C3EE8?style=flat&logo=opencv&logoColor=white)
-![MediaPipe](https://img.shields.io/badge/MediaPipe-0097A7?style=flat&logo=google&logoColor=white)
-![YOLOv8](https://img.shields.io/badge/YOLOv8-111111?style=flat&logo=yolo&logoColor=white)
-![NumPy](https://img.shields.io/badge/NumPy-013243?style=flat&logo=numpy&logoColor=white)
-![Pandas](https://img.shields.io/badge/Pandas-150458?style=flat&logo=pandas&logoColor=white)
-
 ### Agentic AI & RAG
+![LangChain](https://img.shields.io/badge/LangChain-1C3C3C?style=flat&logo=langchain&logoColor=white)
+![LangGraph](https://img.shields.io/badge/LangGraph-111111?style=flat&logoColor=white)
 ![ChromaDB](https://img.shields.io/badge/ChromaDB-FF6B35?style=flat&logoColor=white)
 ![FastAPI](https://img.shields.io/badge/FastAPI-009688?style=flat&logo=fastapi&logoColor=white)
+![NumPy](https://img.shields.io/badge/NumPy-013243?style=flat&logo=numpy&logoColor=white)
+![Pandas](https://img.shields.io/badge/Pandas-150458?style=flat&logo=pandas&logoColor=white)
 
 ### Tools & Databases
 ![MySQL](https://img.shields.io/badge/MySQL-4479A1?style=flat&logo=mysql&logoColor=white)
 ![CMake](https://img.shields.io/badge/CMake-064F8C?style=flat&logo=cmake&logoColor=white)
 ![Git](https://img.shields.io/badge/Git-F05032?style=flat&logo=git&logoColor=white)
 ![Jupyter](https://img.shields.io/badge/Jupyter-F37626?style=flat&logo=jupyter&logoColor=white)
+
+---
+
+### Projects
+
+**Order Management System** `C++ · MySQL · MySQL Connector/C++`
+- Designed a 3NF-normalized relational schema (customers, products, orders, order_items) with primary, foreign, and composite keys to eliminate data redundancy and enforce referential integrity.
+- Implemented atomic order placement using SQL transactions with commit/rollback, guaranteeing consistency under partial failures (e.g., insufficient stock) so no order is ever left half-written.
+- Built a C++ data-access layer using prepared statements to prevent SQL injection, with RAII-based connection handling for safe resource cleanup.
+- Used the InnoDB engine to support ACID-compliant transactions across multi-statement order operations.
+
+**Concurrent Seat Reservation System** `C++ · POSIX (Shared Memory, Semaphores)`
+- Built a multi-process seat-booking system using POSIX shared memory (mmap) for inter-process communication, with booking agents spawned via fork.
+- Eliminated double-booking race conditions by guarding the critical section with semaphores, demonstrating mutual exclusion across concurrent processes.
+- Reproduced and resolved a classic race condition (lost-update problem) to demonstrate the need for synchronization on shared state.
+- Added signal handling for clean release of shared-memory and semaphore resources on process termination.
 
 ---
 
