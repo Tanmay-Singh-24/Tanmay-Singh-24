@@ -41,6 +41,11 @@ I build projects at the intersection of AI and systems programming — from a pr
 - Reproduced and resolved a classic race condition (lost-update problem) to demonstrate the need for synchronization on shared state.
 - Added signal handling for clean release of shared-memory and semaphore resources on process termination.
 
+**Multi-Agent RAG Workflow** *(in progress)* `Python · LangChain · LangGraph · ChromaDB · FastAPI · GCP`
+- Building a production RAG-powered document assistant with a multi-agent architecture using LangGraph for stateful, multi-step reasoning workflows.
+- Agents communicate through a shared state graph — a retrieval agent fetches relevant chunks from ChromaDB, a grading agent filters low-relevance results, and a generation agent synthesizes the final answer.
+- Exposing the pipeline via a FastAPI REST API with automated CI/CD deployment on GCP.
+
 ---
 
 ![3D Contrib](./profile-3d-contrib/profile-night-rainbow.svg)
