@@ -29,11 +29,11 @@ I build projects at the intersection of AI and systems programming — from mult
 
 ### Projects
 
-**Order Management System** *(in progress)* `C++ · MySQL · MySQL Connector/C++`
-- Designing a 3NF-normalized relational schema (customers, products, orders, order_items) with primary, foreign, and composite keys to eliminate data redundancy and enforce referential integrity.
-- Implementing atomic order placement using SQL transactions with commit/rollback, guaranteeing consistency under partial failures (e.g., insufficient stock) so no order is ever left half-written.
-- Building a C++ data-access layer using prepared statements to prevent SQL injection, with RAII-based connection handling for safe resource cleanup.
-- Using the InnoDB engine to support ACID-compliant transactions across multi-statement order operations.
+**Order Management System** `C++ · MySQL · MySQL Connector/C++`
+- Designed a normalized (3NF) relational schema (customers, products, orders, order_items) with surrogate primary keys, foreign-key constraints, and per-relationship ON DELETE behavior (CASCADE/RESTRICT) to eliminate redundancy and enforce referential integrity.
+- Implemented atomic order placement using SQL transactions with commit/rollback, guaranteeing consistency under partial failures (e.g. insufficient stock) so no order is ever left half-written.
+- Built a C++ data-access layer using parameterized queries (bound parameters) to prevent SQL injection, with RAII-based connection handling for safe, automatic resource cleanup.
+- Used the InnoDB storage engine to support ACID-compliant transactions across multi-statement order operations.
 
 **Concurrent Seat Reservation System** *(in progress)* `C++ · POSIX (Shared Memory, Semaphores)`
 - Building a multi-process seat-booking system using POSIX shared memory (mmap) for inter-process communication, with booking agents spawned via fork.
