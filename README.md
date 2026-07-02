@@ -30,11 +30,10 @@ I build projects at the intersection of AI and systems programming — from mult
 ### Projects
 
 **Order Management System** `C++ · MySQL · MySQL Connector/C++`
-- Designed a normalized (3NF) relational schema (customers, products, orders, order_items) with surrogate primary keys, foreign-key constraints, and per-relationship ON DELETE behavior (CASCADE/RESTRICT) to eliminate redundancy and enforce referential integrity.
-- Implemented atomic order placement using SQL transactions with commit/rollback, guaranteeing consistency under partial failures (e.g. insufficient stock) so no order is ever left half-written.
-- Built a C++ data-access layer using parameterized queries (bound parameters) to prevent SQL injection, with RAII-based connection handling for safe, automatic resource cleanup.
-- Used the InnoDB storage engine to support ACID-compliant transactions across multi-statement order operations.
-
+- Designed a normalized 3NF relational schema for customers, products, orders, and order_items using surrogate primary keys and foreign-key constraints with explicit ON DELETE rules (CASCADE/RESTRICT) to enforce referential integrity and eliminate update anomalies.
+- Implemented atomic order placement using MySQL transactions (commit/rollback), ensuring all-or-nothing execution across order creation and stock updates and preventing partial or inconsistent order states under failure conditions such as insufficient inventory.
+- Built a C++ data-access layer using parameterized queries (prepared statements) to eliminate SQL injection risk, with RAII-based connection management ensuring deterministic cleanup of database resources.
+- Strengthened correctness guarantees using InnoDB-backed ACID transactions, DECIMAL-based monetary storage to avoid floating-point errors, and automated end-to-end testing validating commit and rollback behavior under success and failure scenarios.
 **Concurrent Seat Reservation System** *(in progress)* `C++ · POSIX (Shared Memory, Semaphores)`
 - Building a multi-process seat-booking system using POSIX shared memory (mmap) for inter-process communication, with booking agents spawned via fork.
 - Eliminating double-booking race conditions by guarding the critical section with semaphores, demonstrating mutual exclusion across concurrent processes.
