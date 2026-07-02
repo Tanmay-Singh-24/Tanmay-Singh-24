@@ -34,6 +34,7 @@ I build projects at the intersection of AI and systems programming — from mult
 - Implemented atomic order placement using MySQL transactions (commit/rollback), ensuring all-or-nothing execution across order creation and stock updates and preventing partial or inconsistent order states under failure conditions such as insufficient inventory.
 - Built a C++ data-access layer using parameterized queries (prepared statements) to eliminate SQL injection risk, with RAII-based connection management ensuring deterministic cleanup of database resources.
 - Strengthened correctness guarantees using InnoDB-backed ACID transactions, DECIMAL-based monetary storage to avoid floating-point errors, and automated end-to-end testing validating commit and rollback behavior under success and failure scenarios.
+
 **Concurrent Seat Reservation System** *(in progress)* `C++ · POSIX (Shared Memory, Semaphores)`
 - Building a multi-process seat-booking system using POSIX shared memory (mmap) for inter-process communication, with booking agents spawned via fork.
 - Eliminating double-booking race conditions by guarding the critical section with semaphores, demonstrating mutual exclusion across concurrent processes.
