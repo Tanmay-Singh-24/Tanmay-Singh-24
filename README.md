@@ -29,22 +29,23 @@ I build projects at the intersection of AI and systems programming — from mult
 
 ### Projects
 
+**[CourseLens](https://github.com/Tanmay-Singh-24/courselens)** `Python · LangGraph · Groq · ChromaDB · Streamlit`
+- Built a multimodal, agentic RAG study tool that ingests lecture audio (Whisper transcription), YouTube videos, and slide PDFs — including extracted figures — into a unified ChromaDB vector store for cross-source question answering.
+- Every answer carries deep-linked citations: audio players seek to the cited timestamp, YouTube links open at the exact moment, and cited slide figures render inline — making claims verifiable at the source.
+- Implemented a LangGraph corrective-RAG pipeline where a grader node validates retrieved evidence before generation, enforcing deterministic refusal on off-corpus questions with bounded retries instead of hallucinated answers.
+- Backed quality with an automated eval harness (gold question set scoring answer accuracy and refusal correctness), latency/token instrumentation across the pipeline, and a concept-graph "Course Map" that visualizes how topics across sources relate.
+
+**[Concurrent Seat Reservation System](https://github.com/Tanmay-Singh-24/concurrent-seat-reservation)** `C++17 · POSIX (Shared Memory, Semaphores)`
+- Built a multi-process seat-booking system on POSIX shared memory (shm_open/mmap) and a named semaphore, with booking agents spawned as real OS processes via fork — synchronization across process boundaries, where std::mutex and std::atomic don't reach by default.
+- Demonstrated the lost-update race, then eliminated it: the same seeded workload runs with and without the lock, and a built-in consistency audit turns "no seat is ever double-booked" into an invariant checked by exit code.
+- Validated under a 1.2M-request stress suite (15 seeded runs × 16 agents × 5,000 requests) with zero inconsistencies at ~545K guarded operations/second.
+- Engineered for crash safety: an unlink-early IPC design that cannot leak kernel objects, surviving kill -9 of any agent — even inside the critical section — with a clean, audited shutdown instead of a system-wide hang.
+
 **[Order Management System](https://github.com/Tanmay-Singh-24/order-management-system)** `C++ · MySQL (InnoDB) · MySQL Connector/C++`
 - Designed a normalized 3NF relational schema for customers, products, orders, and order_items using surrogate primary keys and foreign-key constraints with explicit ON DELETE rules (CASCADE/RESTRICT) to enforce referential integrity and eliminate update anomalies.
 - Implemented atomic order placement using MySQL transactions (commit/rollback), ensuring all-or-nothing execution across order creation and stock updates and preventing partial or inconsistent order states under failure conditions such as insufficient inventory.
 - Built a C++ data-access layer using parameterized queries (prepared statements) to eliminate SQL injection risk, with RAII-based connection management ensuring deterministic cleanup of database resources.
 - Strengthened correctness with DECIMAL-based monetary storage to avoid floating-point errors, a CHECK (stock >= 0) constraint as a database-level safety net backing the application's stock check, and automated end-to-end testing validating commit and rollback behavior under success and failure scenarios.
-
-**Concurrent Seat Reservation System** *(in progress)* `C++ · POSIX (Shared Memory, Semaphores)`
-- Building a multi-process seat-booking system using POSIX shared memory (mmap) for inter-process communication, with booking agents spawned via fork.
-- Eliminating double-booking race conditions by guarding the critical section with semaphores, demonstrating mutual exclusion across concurrent processes.
-- Reproducing and resolving a classic race condition (lost-update problem) to demonstrate the need for synchronization on shared state.
-- Adding signal handling for clean release of shared-memory and semaphore resources on process termination.
-
-**Multi-Agent RAG Workflow** *(in progress)* `Python · LangChain · LangGraph · ChromaDB · FastAPI · GCP`
-- Developing a production RAG-powered document assistant with a multi-agent architecture using LangGraph for stateful, multi-step reasoning workflows.
-- Agents communicate through a shared state graph — a retrieval agent fetches relevant chunks from ChromaDB, a grading agent filters low-relevance results, and a generation agent synthesizes the final answer.
-- Exposing the pipeline via a FastAPI REST API with automated CI/CD deployment on GCP.
 
 ---
 
